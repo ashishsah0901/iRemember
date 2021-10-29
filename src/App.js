@@ -26,14 +26,14 @@ function App() {
   }
   return (
     <>
-      <NoteState>
+      <NoteState showAlert={showAlert}>
         <Router>
           <Navbar />
           <Alert alert={alert} />
           <div className="container">
             <Switch>
               <Route exact path="/">
-                <Home showAlert={showAlert} />
+                <Home />
               </Route>
               <Route exact path="/about">
                 <About title="About text helper" />

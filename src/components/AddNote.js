@@ -10,7 +10,6 @@ export const AddNote = (props) => {
         e.preventDefault();
         addNote(note.title, note.description, note.tag);
         setNote({ title: "", description: "", tag: "" })
-        props.showAlert("Data added successfully", "success")
     }
 
     const onChange = (e) => {

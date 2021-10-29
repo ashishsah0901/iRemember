@@ -14,9 +14,13 @@ const SignUp = (props) => {
             body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password })
         })
         const json = await response.json()
-        props.showAlert("Signed up successfully", "success");
-        localStorage.setItem('token', json.token)
-        history.push("/");
+        if (json.success) {
+            props.showAlert("Signed up successfully", "success");
+            localStorage.setItem('token', json.token)
+            history.push("/");
+        } else {
+            props.showAlert("Please enter valid credentials", "danger");
+        }
     }
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
