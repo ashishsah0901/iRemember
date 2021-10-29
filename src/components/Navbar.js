@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 
 const Navbar = () => {
     const location = useLocation()
-    useEffect(() => {
-
-    }, [location])
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+    }
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Navbar</Link>
+                <img className="mx-2" src="../../ms-icon-70x70.png" height="25vw" alt="/" />
+                <Link className="navbar-brand" to="/">i-Remember</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -23,10 +24,10 @@ const Navbar = () => {
                             <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    {!localStorage.getItem('token') ? <form className="d-flex">
+                        <Link className="btn btn-light mx-2" to="/login" role="button">Login</Link>
+                        <Link className="btn btn-light" to="/signup" role="button">Sign Up</Link>
+                    </form> : <Link onClick={handleLogout} role="button" to="/login" className="btn btn-light">Logout</Link>}
                 </div>
             </div>
         </nav>
