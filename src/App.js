@@ -36,7 +36,7 @@ function App() {
                 <Home />
               </Route>
               <Route exact path="/about">
-                <About title="About text helper" />
+                <About title="About i-Remember" />
               </Route>
               <Route exact path="/login">
                 <Login showAlert={showAlert} />
